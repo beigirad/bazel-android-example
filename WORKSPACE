@@ -38,6 +38,7 @@ maven_install(
         "androidx.appcompat:appcompat:1.2.0",
         "com.google.android.material:material:1.3.0",
         "androidx.constraintlayout:constraintlayout:2.0.4",
+        "androidx.navigation:navigation-fragment-ktx:2.3.3",
     ],
     repositories = [
         "https://maven.google.com",

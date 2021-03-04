@@ -11,8 +11,10 @@ android_binary(
     },
     resource_files = glob(["src/main/res/**"]),
     deps = [
+        ":app_kt",
         "@maven//:androidx_appcompat_appcompat",
         "@maven//:androidx_constraintlayout_constraintlayout",
+        "@maven//:androidx_navigation_navigation_fragment_ktx",
         "@maven//:com_google_android_material_material",
     ],
 )
@@ -24,5 +26,9 @@ kt_android_library(
     manifest = "src/main/AndroidManifest.xml",
     resource_files = glob(["src/main/res/**"]),
     deps = [
+        "@maven//:androidx_appcompat_appcompat",
+        "@maven//:androidx_constraintlayout_constraintlayout",
+        "@maven//:androidx_navigation_navigation_fragment_ktx",
+        "@maven//:com_google_android_material_material",
     ],
 )
