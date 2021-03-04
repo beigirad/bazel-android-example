@@ -13,4 +13,33 @@ load("@build_bazel_rules_android//android:rules.bzl", "android_sdk_repository")
 
 android_sdk_repository(
     name = "androidsdk",
+    api_level = 30,
+    build_tools_version = "30.0.2",
+)
+
+# Configure Maven external repositories
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+RULES_JVM_EXTERNAL_TAG = "4.0"
+RULES_JVM_EXTERNAL_SHA = "31701ad93dbfe544d597dbe62c9a1fdd76d81d8a9150c2bf1ecf928ecdf97169"
+
+http_archive(
+    name = "rules_jvm_external",
+    sha256 = RULES_JVM_EXTERNAL_SHA,
+    strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
+    url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
+)
+
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+
+maven_install(
+    artifacts = [
+        "androidx.appcompat:appcompat:1.2.0",
+        "com.google.android.material:material:1.3.0",
+        "androidx.constraintlayout:constraintlayout:2.0.4",
+    ],
+    repositories = [
+        "https://maven.google.com",
+        "https://jcenter.bintray.com",
+    ],
 )
